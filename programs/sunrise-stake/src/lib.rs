@@ -128,12 +128,9 @@ pub mod sunrise_stake {
         let accounts = ctx.accounts.deref().into();
         marinade::unstake(&accounts, msol_lamports)?;
 
-        let staked_lamports = ctx.accounts.gsol_token_account.amount;
-        msg!("Staked lamports: {}", staked_lamports);
-
         msg!("Burn GSol");
         burn(
-            staked_lamports,
+            lamports,
             &ctx.accounts.gsol_mint.to_account_info(),
             &ctx.accounts.gsol_token_account_authority,
             &ctx.accounts.gsol_token_account.to_account_info(),
